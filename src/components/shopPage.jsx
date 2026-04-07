@@ -1,10 +1,18 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
-function ShopPage() {
+function ShopPage({ itemsMaster }) {
+  const [items, setItems] = useState(null);
+  useEffect(() => {
+    itemsMaster.then((data) => setItems(data));
+  }, []);
   return (
     <>
-      <h1>Shop Page</h1>
-      <Link to="/">Return to Home Page.</Link>
+      <header>
+        <h1>Shop Page</h1>
+        <Link to="/">Return to Home Page.</Link>
+      </header>
+      <main>{}</main>
     </>
   );
 }
