@@ -1,18 +1,12 @@
 import { Link } from "react-router";
+import NavBar from "./navBar";
 
 function Homepage() {
   return (
     <>
       <header>
-        <h1>Shopping Page</h1>
-        <ul>
-          <li>
-            <Link to={"/shop"}>Shop</Link>
-          </li>
-          <li>
-            <Link to={"/cart"}>Cart</Link>
-          </li>
-        </ul>
+        <h1>Silas's Shopping Page</h1>
+        <NavBar />
       </header>
       <main>
         <h2>What is this?</h2>
@@ -23,8 +17,8 @@ function Homepage() {
           accordance with the{" "}
           <a href="https://www.theodinproject.com/">Odin Project's</a> Shopping
           Cart project. You should be able to navigate to some pages and add
-          items which will show up in your cart. You won't be able to actually
-          purchase any of the items.
+          items which will show up in your cart. All items come from the{" "}
+          <a href="https://fakestoreapi.com">Fake Store API.</a>
         </p>
         <h2>Who Am I?</h2>
         <p>

@@ -13,9 +13,9 @@ describe("Homepage component", () => {
         <Homepage />
       </RouterProvider>,
     );
-    expect(
-      screen.getByRole("heading", { name: /shopping/i }).textContent,
-    ).toMatch(/shopping/i);
+    expect(screen.getByRole("heading", { name: /silas/i }).textContent).toMatch(
+      /silas/i,
+    );
   });
   it("renders navigation", () => {
     render(
