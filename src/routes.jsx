@@ -1,6 +1,7 @@
 import { Homepage } from "./components/homePage";
 import Errorpage from "./components/errorPage";
 import ShopPage from "./components/shopPage";
+import App from "./components/app";
 
 const items = fetch("https://fakestoreapi.com/products")
   .then((data) => data.json())
@@ -9,12 +10,19 @@ const items = fetch("https://fakestoreapi.com/products")
 const routes = [
   {
     path: "/",
-    element: <Homepage />,
-    errorElement: <Errorpage />,
-  },
-  {
-    path: "/shop",
-    element: <ShopPage itemsMaster={items} />,
+    element: <App />,
+    children: [
+      {
+        path: "/shop",
+        element: <ShopPage itemsMaster={items} />,
+        errorElement: <Errorpage />,
+      },
+      {
+        path: "",
+        element: <Homepage />,
+        errorElement: <Errorpage />,
+      },
+    ],
     errorElement: <Errorpage />,
   },
 ];

@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
 import Card from "./card";
+import NavBar from "./navBar";
 
 function ShopPage({ itemsMaster }) {
   const [items, setItems] = useState(null);
   useEffect(() => {
     itemsMaster.then((data) => setItems(data));
-  }, []);
+  });
   return (
     <>
       <header>
         <h1>Shop Page</h1>
-        <Link to="/">Return to Home Page.</Link>
+        <NavBar />
       </header>
       <main>
         {items
@@ -22,6 +22,7 @@ function ShopPage({ itemsMaster }) {
                 price={item.price}
                 image={item.image}
                 description={item.description}
+                item={item}
               />
             ))
           : "Loading..."}
