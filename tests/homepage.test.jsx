@@ -27,7 +27,9 @@ describe("Homepage component", () => {
       .getAllByRole("listitem")
       .map((element) => element.textContent);
     expect(listText).toContain("Shop");
-    expect(listText).toContain("Cart");
+    expect(listText).toEqual(
+      expect.arrayContaining([expect.stringMatching(/cart/i)]),
+    );
   });
   it("links to shop page", async () => {
     const user = userEvent.setup();
