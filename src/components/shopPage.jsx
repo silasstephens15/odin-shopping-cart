@@ -6,7 +6,7 @@ function ShopPage({ itemsMaster }) {
   const [items, setItems] = useState(null);
   useEffect(() => {
     itemsMaster.then((data) => setItems(data));
-  });
+  }, []);
   return (
     <>
       <header>
