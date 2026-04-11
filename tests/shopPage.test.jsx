@@ -3,6 +3,7 @@ import { createMemoryRouter, Outlet, RouterProvider } from "react-router";
 import { describe, expect, it } from "vitest";
 import ShopPage from "../src/components/shopPage";
 import { useState } from "react";
+import userEvent from "@testing-library/user-event";
 
 const LayoutWithContext = () => {
   const [cartItems, setCartItems] = useState({});
@@ -57,5 +58,26 @@ describe("ShopPage component", () => {
     render(<RouterProvider router={makeRouter(makeItems())} />);
     const cardHeading = await screen.findByText(/item title/i);
     expect(cardHeading).toBeInTheDocument();
+  });
+  it("adds to cart", async () => {
+    const user = userEvent.setup();
+    render(<RouterProvider router={makeRouter(makeItems())} />);
+    const button = await screen.findByRole("button", { name: /add to cart/i });
+    await user.click(button);
+    expect(screen.getByRole("link", { name: /cart/i }).textContent).toMatch(
+      /cart 1/i,
+    );
+  });
+  it("adds multiple to cart", async () => {
+    const user = userEvent.setup();
+    render(<RouterProvider router={makeRouter(makeItems())} />);
+    const button = await screen.findByRole("button", { name: /add to cart/i });
+    const addButton = await screen.findByRole("button", { name: "+" });
+    await user.click(addButton);
+    await user.click(button);
+    expect(screen.getByRole("link", { name: /cart/i }).textContent).toMatch(
+      /cart 2/i,
+    );
+    expect(screen.getByRole("input").value).toBe(2);
   });
 });
