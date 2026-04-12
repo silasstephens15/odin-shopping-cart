@@ -73,6 +73,9 @@ describe("ShopPage component", () => {
     render(<RouterProvider router={makeRouter(makeItems())} />);
     const button = await screen.findByRole("button", { name: /add to cart/i });
     const addButton = await screen.findByRole("button", { name: "+" });
+    const subtractButton = await screen.findByRole("button", { name: "-" });
+    await user.click(addButton);
+    await user.click(subtractButton);
     await user.click(addButton);
     expect(screen.getByRole("spinbutton").value).toEqual("2");
     await user.click(button);
