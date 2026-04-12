@@ -1,13 +1,15 @@
 import { useOutletContext } from "react-router";
+import { useState } from "react";
 
 function Card({ title, price, description, image, item }) {
   const [cartItems, setCartItems] = useOutletContext();
-  const handleChangeCartItems = () => {
+  const [value, setValue] = useState(1);
+  const handleChangeCartItems = (amount) => {
     setCartItems({
       ...cartItems,
       [item.id]: Object.keys(cartItems).includes(String(item.id))
-        ? (cartItems[item.id] += 1)
-        : 1,
+        ? (cartItems[item.id] += amount)
+        : amount,
     });
   };
   return (
@@ -18,10 +20,17 @@ function Card({ title, price, description, image, item }) {
       <p>{description}</p>
       <div className="card-buttons">
         <label htmlFor="amount"></label>
-        <button>+</button>
-        <input type="number" name="amount" value={0} />
-        <button>-</button>
-        <button onClick={handleChangeCartItems}>Add to cart</button>
+        <button onClick={() => setValue(value + 1)}>+</button>
+        <input
+          type="number"
+          name="amount"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <button onClick={() => setValue(value - 1)}>-</button>
+        <button onClick={() => handleChangeCartItems(parseInt(value))}>
+          Add to cart
+        </button>
       </div>
     </div>
   );

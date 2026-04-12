@@ -6,7 +6,6 @@ function NavBar() {
   const [cartItems, setCartItems] = useOutletContext();
   const [itemCount, setItemCount] = useState(0);
   (useEffect(() => {
-    console.log(cartItems);
     setItemCount(
       Object.keys(cartItems).reduce(
         (acc, curr) => (acc += parseInt(cartItems[curr])),
@@ -14,7 +13,7 @@ function NavBar() {
       ),
     );
   }),
-    []);
+    [cartItems]);
   return (
     <div className="links">
       <h2>Navigation</h2>
