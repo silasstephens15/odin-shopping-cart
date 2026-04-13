@@ -20,14 +20,14 @@ function Card({ title, price, description, image, item }) {
       <p>{description}</p>
       <div className="card-buttons">
         <label htmlFor="amount"></label>
-        <button onClick={() => setValue(value + 1)}>+</button>
+        <button onClick={() => setValue(parseInt(value) + 1)}>+</button>
         <input
           type="number"
           name="amount"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <button onClick={() => setValue(value - 1)}>-</button>
+        <button onClick={() => setValue(parseInt(value) - 1)}>-</button>
         <button onClick={() => handleChangeCartItems(parseInt(value))}>
           Add to cart
         </button>
