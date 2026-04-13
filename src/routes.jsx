@@ -2,6 +2,7 @@ import { Homepage } from "./components/homePage";
 import Errorpage from "./components/errorPage";
 import ShopPage from "./components/shopPage";
 import App from "./components/app";
+import Cart from "./components/cartPage";
 
 const items = fetch("https://fakestoreapi.com/products")
   .then((data) => data.json())
@@ -22,6 +23,7 @@ const routes = [
         element: <Homepage />,
         errorElement: <Errorpage />,
       },
+      { path: "/cart", element: <Cart />, errorElement: <Errorpage /> },
     ],
     errorElement: <Errorpage />,
   },

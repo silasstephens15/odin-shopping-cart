@@ -1,9 +1,15 @@
 import { useOutletContext } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function Card({ title, price, description, image, item }) {
+function CartCard({ title, price, description, image, item }) {
   const [cartItems, setCartItems] = useOutletContext();
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(cartItems[item.id][0]);
+  useEffect(() => {
+    setCartItems({
+      ...cartItems,
+      [item.id]: [parseInt(value), item],
+    });
+  }, [value]);
   const handleChangeCartItems = (amount, item) => {
     setCartItems({
       ...cartItems,
@@ -20,20 +26,31 @@ function Card({ title, price, description, image, item }) {
       <p>{description}</p>
       <div className="card-buttons">
         <label htmlFor="amount"></label>
-        <button onClick={() => setValue(parseInt(value) + 1)}>+</button>
+        <button
+          onClick={() => {
+            handleChangeCartItems(1, item);
+            setValue(parseInt(value) + 1);
+          }}
+        >
+          +
+        </button>
         <input
           type="number"
           name="amount"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <button onClick={() => setValue(parseInt(value) - 1)}>-</button>
-        <button onClick={() => handleChangeCartItems(parseInt(value), item)}>
-          Add to cart
+        <button
+          onClick={() => {
+            handleChangeCartItems(-1, item);
+            setValue(parseInt(value) - 1);
+          }}
+        >
+          -
         </button>
       </div>
     </div>
   );
 }
 
-export default Card;
+export default CartCard;

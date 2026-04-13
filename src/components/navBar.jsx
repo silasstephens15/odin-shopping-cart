@@ -6,9 +6,10 @@ function NavBar() {
   const [cartItems, setCartItems] = useOutletContext();
   const [itemCount, setItemCount] = useState(0);
   (useEffect(() => {
+    console.log(cartItems);
     setItemCount(
       Object.keys(cartItems).reduce(
-        (acc, curr) => (acc += parseInt(cartItems[curr])),
+        (acc, curr) => (acc += parseInt(cartItems[curr][0])),
         0,
       ),
     );
