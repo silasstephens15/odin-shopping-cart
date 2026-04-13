@@ -4,19 +4,26 @@ import { useEffect, useState } from "react";
 function CartCard({ title, price, description, image, item }) {
   const [cartItems, setCartItems] = useOutletContext();
   const [value, setValue] = useState(cartItems[item.id][0]);
-  useEffect(() => {
+
+  const handleChangeCartItems = (newValue) => {
+    if (newValue <= 0) {
+      const { [item.id]: _, ...newCartItems } = cartItems;
+      setCartItems(newCartItems);
+      return;
+    }
+    setValue(newValue);
     setCartItems({
       ...cartItems,
-      [item.id]: [parseInt(value), item],
+      [item.id]: [newValue, item],
     });
-  }, [value]);
-  const handleChangeCartItems = (amount, item) => {
-    setCartItems({
-      ...cartItems,
-      [item.id]: Object.keys(cartItems).includes(String(item.id))
-        ? [(cartItems[item.id][0] += amount), item]
-        : [amount, item],
-    });
+  };
+  const handleInputChange = (e) => {
+    const raw = parseInt(e.target.value);
+    if (isNaN(raw)) {
+      setValue(raw);
+      return;
+    }
+    handleChangeCartItems(raw);
   };
   return (
     <div className="card">
@@ -28,8 +35,7 @@ function CartCard({ title, price, description, image, item }) {
         <label htmlFor="amount"></label>
         <button
           onClick={() => {
-            handleChangeCartItems(1, item);
-            setValue(parseInt(value) + 1);
+            handleChangeCartItems(value + 1);
           }}
         >
           +
@@ -38,12 +44,12 @@ function CartCard({ title, price, description, image, item }) {
           type="number"
           name="amount"
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={handleInputChange}
+          onBlur={() => handleChangeCartItems(value)}
         />
         <button
           onClick={() => {
-            handleChangeCartItems(-1, item);
-            setValue(parseInt(value) - 1);
+            handleChangeCartItems(value - 1);
           }}
         >
           -
