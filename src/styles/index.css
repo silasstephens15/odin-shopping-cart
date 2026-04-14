@@ -1,4 +1,9 @@
 :root {
+  --dark-blue: #0e2534;
+  --medium-blue: #1b4764;
+  --purple: #6d75c0;
+  --light-blue: #296b96;
+  --orange: #d28451;
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
@@ -11,15 +16,15 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
   color: var(--text);
-  background: var(--bg);
+  background: var(--medium-blue);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -70,11 +75,11 @@ h1,
 h2 {
   font-family: var(--heading);
   font-weight: 500;
-  color: var(--text-h);
+  color: white;
 }
 
 h1 {
-  font-size: 56px;
+  font-size: 42px;
   letter-spacing: -1.68px;
   margin: 32px 0;
   @media (max-width: 1024px) {
@@ -91,21 +96,26 @@ h2 {
     font-size: 20px;
   }
 }
+header {
+  display: flex;
+  position: sticky;
+  top: 0;
+  background-color: var(--dark-blue);
+  align-items: center;
+  justify-content: space-around;
+}
+
 p {
-  margin: 0;
+  margin: 8px;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+main {
+  background-color: white;
+  min-height: 100dvh;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+@media (max-width: 431px) {
+  header {
+    flex-direction: column;
+  }
 }

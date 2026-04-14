@@ -1,6 +1,7 @@
 import { useOutletContext } from "react-router";
 import NavBar from "./navBar";
 import CartCard from "./cartCard";
+import styles from "../styles/cart.module.css";
 
 function Cart() {
   const [cartItems, setCartItems] = useOutletContext();
@@ -10,7 +11,7 @@ function Cart() {
         <h1>Cart</h1>
         <NavBar />
       </header>
-      <main>
+      <main className={styles.items}>
         {Object.keys(cartItems).length !== 0
           ? Object.keys(cartItems).map((item) => (
               <CartCard

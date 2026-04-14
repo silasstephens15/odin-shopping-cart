@@ -1,5 +1,6 @@
 import { useOutletContext } from "react-router";
 import { useState } from "react";
+import styles from "../styles/card.module.css";
 
 function Card({ title, price, description, image, item }) {
   const [cartItems, setCartItems] = useOutletContext();
@@ -13,12 +14,12 @@ function Card({ title, price, description, image, item }) {
     });
   };
   return (
-    <div className="card">
+    <div className={styles.card}>
       <h3>{title}</h3>
       <p>Price: {price}</p>
       <img src={image} />
       <p>{description}</p>
-      <div className="card-buttons">
+      <div className={styles.cardButtons}>
         <label htmlFor="amount"></label>
         <button onClick={() => setValue(parseInt(value) + 1)}>+</button>
         <input
@@ -28,7 +29,10 @@ function Card({ title, price, description, image, item }) {
           onChange={(e) => setValue(e.target.value)}
         />
         <button onClick={() => setValue(parseInt(value) - 1)}>-</button>
-        <button onClick={() => handleChangeCartItems(parseInt(value), item)}>
+        <button
+          onClick={() => handleChangeCartItems(parseInt(value), item)}
+          className={styles.addButton}
+        >
           Add to cart
         </button>
       </div>

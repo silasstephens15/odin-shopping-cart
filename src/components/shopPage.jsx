@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "./card";
 import NavBar from "./navBar";
+import styles from "../styles/cart.module.css";
 
 function ShopPage({ itemsMaster }) {
   const [items, setItems] = useState(null);
@@ -13,7 +14,7 @@ function ShopPage({ itemsMaster }) {
         <h1>Shop Page</h1>
         <NavBar />
       </header>
-      <main>
+      <main className={styles.items}>
         {items
           ? items.map((item) => (
               <Card

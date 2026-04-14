@@ -1,0 +1,29 @@
+.card img {
+  max-width: 20vw;
+  min-width: 50px;
+}
+
+.card {
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: var(--medium-blue) 1px solid;
+}
+
+.cardButtons {
+  display: flex;
+}
+
+.cardButtons * {
+  color: white;
+  background-color: var(--medium-blue);
+  padding: 4px;
+  margin: 6px 0;
+}
+
+.addButton {
+  margin: 6px;
+}

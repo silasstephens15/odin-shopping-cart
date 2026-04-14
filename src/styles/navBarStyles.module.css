@@ -1,0 +1,22 @@
+.links ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.links ul li {
+  padding: 6px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  margin: 16px;
+}
+
+.links ul li a {
+  color: var(--orange);
+  text-decoration: none;
+}

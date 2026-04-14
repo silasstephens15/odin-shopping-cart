@@ -1,5 +1,6 @@
 import { useOutletContext } from "react-router";
 import { useEffect, useState } from "react";
+import styles from "../styles/card.module.css";
 
 function CartCard({ title, price, description, image, item }) {
   const [cartItems, setCartItems] = useOutletContext();
@@ -26,12 +27,12 @@ function CartCard({ title, price, description, image, item }) {
     handleChangeCartItems(raw);
   };
   return (
-    <div className="card">
+    <div className={styles.card}>
       <h3>{title}</h3>
       <p>Price: {price}</p>
       <img src={image} />
       <p>{description}</p>
-      <div className="card-buttons">
+      <div className={styles.cardButtons}>
         <label htmlFor="amount"></label>
         <button
           onClick={() => {

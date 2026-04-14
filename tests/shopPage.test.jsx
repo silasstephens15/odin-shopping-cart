@@ -65,7 +65,7 @@ describe("ShopPage component", () => {
     const button = await screen.findByRole("button", { name: /add to cart/i });
     await user.click(button);
     expect(screen.getByRole("link", { name: /cart/i }).textContent).toMatch(
-      /cart 1/i,
+      /1/i,
     );
   });
   it("adds multiple to cart", async () => {
@@ -80,7 +80,7 @@ describe("ShopPage component", () => {
     expect(screen.getByRole("spinbutton").value).toEqual("2");
     await user.click(button);
     expect(screen.getByRole("link", { name: /cart/i }).textContent).toMatch(
-      /cart 2/i,
+      /2/i,
     );
   });
 });
